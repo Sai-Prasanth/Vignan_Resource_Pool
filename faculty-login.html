@@ -161,9 +161,11 @@ top: 25%;
                 if (data.length == 0) {
                     alert("⚠️wrong id");
                 } else {
-                    console.log(data);
+                    //console.log(data);
                     if (data[0].password == wPassword) {
+                        
                         window.open("firebase-upload.html", "_self");
+                        
                     }
                     else {
                         alert("please enter correct password");
