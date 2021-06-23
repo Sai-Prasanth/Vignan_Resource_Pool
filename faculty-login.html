@@ -1,0 +1,212 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_Rpvtg8CXVXueCwwv5lrRg");
+        })();
+    </script>
+    <style>
+        .body {
+            overflow-y: hidden;
+        }
+
+        .login-dark {
+            height: 685px;
+            background: #e7eaeb url(https://www.greatvaluecolleges.net/wp-content/uploads/2020/08/shutterstock_1679789926.jpg);
+            background-size: cover;
+            position: relative;
+        }
+
+        .login-dark form {
+            max-width: 320px;
+            width: 90%;
+            background-color: #dfe7ec;
+            padding: 40px;
+            border-radius: 4px;
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            color: #fff;
+            box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .login-dark .illustration {
+            text-align: center;
+            padding: 15px 0 20px;
+            font-size: 100px;
+            color: #2980ef;
+        }
+
+        .login-dark form .form-control {
+            background: none;
+            border: none;
+            border-bottom: 1px solid #434a52;
+            border-radius: 0;
+            box-shadow: none;
+            outline: none;
+            color: inherit;
+        }
+
+        .login-dark form .btn-primary {
+            background: #214a80;
+            border: none;
+            border-radius: 4px;
+            padding: 11px;
+            box-shadow: none;
+            margin-top: 26px;
+            text-shadow: none;
+            outline: none;
+        }
+
+        .login-dark form .btn-primary:hover,
+        .login-dark form .btn-primary:active {
+            background: #214a80;
+            outline: none;
+        }
+
+        .login-dark form .forgot {
+
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            color: #6f7a85;
+            opacity: 0.9;
+            text-decoration: none;
+        }
+
+        .login-dark form .forgot:hover,
+        .login-dark form .forgot:active {
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .login-dark form .btn-primary:active {
+            transform: translateY(1px);
+        }
+        #ipId{
+            size: 10cm;
+        }
+        #ipPassword{
+        size: 10cm;
+        }
+        #form{
+position: absolute;
+left: 45%;
+top: 25%;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <div class="login-dark">
+        <div id="form">
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group "><input  type="text" id="ipId" placeholder="ID"></div>
+            <div class="form-group "><input  type="password" id="ipPassword" placeholder="Password">
+            </div>
+            <div class="form-group"><button  onclick="login()">Log In</button></div>
+            <!--<div class="form-group"><button class="btn btn-primary btn-block" onclick="fun()">Forgot</button></div>-->
+            <a href="javascript:void(0);" onclick="fun();">Forgot your password?</a>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDbjfF91hsSmOvF_L31IP8xOU7M9_k2ea0",
+            authDomain: "circular-4ba80.firebaseapp.com",
+            projectId: "circular-4ba80",
+            storageBucket: "circular-4ba80.appspot.com",
+            messagingSenderId: "1067818656634",
+            appId: "1:1067818656634:web:84c42f446da1ed7e522cc3",
+            measurementId: "G-Z4LSR23PKK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        function login() {
+            var data = [];
+
+            var wLogId = document.getElementById("ipId").value;
+
+            var wPassword = document.getElementById("ipPassword").value;
+            firebase.database().ref("FacultyDetails").orderByChild("id").equalTo(parseInt(wLogId)).on('value', function (snapshot) {
+                data = [];
+                snapshot.forEach(element => {
+                    data.push(element.val());
+                });
+
+                if (data.length == 0) {
+                    alert("⚠️wrong id");
+                } else {
+                    console.log(data);
+                    if (data[0].password == wPassword) {
+                        window.open("firebase-upload.html", "_self");
+                    }
+                    else {
+                        alert("please enter correct password");
+                    }
+                }
+
+            });
+
+
+
+        }
+        function fun() {
+            var data = [];
+            var wLogId = document.getElementById("ipId").value;
+            if (wLogId != "") {
+                firebase.database().ref("FacultyDetails").orderByChild("id").equalTo(parseInt(wLogId)).on('value', function (snapshot) {
+                    data = [];
+                    snapshot.forEach(element => {
+                        data.push(element.val());
+                    });
+                    if (data.length == 0) {
+
+                        alert("wrong id");
+                    }
+                    else {
+                        var temp = {
+                            message: data[0].password,
+
+                            reply_to: data[0].mail,
+
+                        };
+                        emailjs.send('service_427cnce', 'template_x6rr7ab', temp)
+                            .then(alert("Please Check Your Mail"))
+                    }
+                });
+            }
+            else {
+                alert("Enter Id");
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>

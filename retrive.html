@@ -1,0 +1,182 @@
+<html>
+
+<head>
+    <title>Student Resources</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+    <style>
+        .divYear {
+            position: absolute;
+            left: 20%;
+            top: 30%;
+        }
+
+        #divType {
+            position: absolute;
+            left: 65%;
+            top: 30%;
+        }
+
+        #divTable {
+            position: absolute;
+            left: 18%;
+            top: 50%;
+        }
+
+        #btSubmit {
+            position: absolute;
+            left: 47%;
+            top: 40%;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th {
+            background-color: #121213;
+            color: white;
+        }
+
+        th,
+        td {
+            width: 150px;
+            text-align: center;
+            border: 1px solid rgb(228, 234, 238);
+            padding: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="divYear">
+        <label for="" id="lblSelectYear">SelectYear:</label>
+        <select id="Year">
+            <option value=""> </option>
+            <optgroup label="FirstYear" id="1stYear">
+                <option value="Year1,Sem1" id="sem1">Sem1</option>
+                <option value="Year1,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="SecondYear" id="2ndYear">
+                <option value="Year2,Sem1" id="sem1">Sem1</option>
+                <option value="Year2,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="ThirdYear" id="3rdYear">
+                <option value="Year3,Sem1" id="sem1">Sem1</option>
+                <option value="Year3,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="FourthYear" id="4thYear">
+                <option value="Year4,Sem1" id="sem1">Sem1</option>
+                <option value="Year4,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+        </select>
+    </div>
+    <br>
+    <div id="divType">
+        <label for="">Type Of Data:</label>
+        <select name="" id="type">
+            <option value=""> </option>
+            <option value="Image">Image</option>
+            <option value="Document">Document</option>
+            <option value="Video">Video</option>
+            <option value="PPT">PPT</option>
+        </select>
+    </div>
+    <br>
+
+    <div id="divTable">
+        <table id="myTable">
+            <tr>
+                <th>S.No</th>
+                <th>Topic</th>
+                <th>Faculty Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Download</th>
+            </tr>
+        </table>
+    </div>
+
+    <button onclick="retrive()" id="btSubmit">submit</button>
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDbjfF91hsSmOvF_L31IP8xOU7M9_k2ea0",
+            authDomain: "circular-4ba80.firebaseapp.com",
+            projectId: "circular-4ba80",
+            storageBucket: "circular-4ba80.appspot.com",
+            messagingSenderId: "1067818656634",
+            appId: "1:1067818656634:web:84c42f446da1ed7e522cc3",
+            measurementId: "G-Z4LSR23PKK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var data = []; //array to store nodes data from firebase
+        
+
+        function retrive() {
+            //declare variables and assign value by id's
+            var wYear, wSem, wDocument;
+            var x = document.getElementById("Year").value;
+            var x1 = x.split(",");
+            wYear = x1[0];
+
+            wSem = x1[1];
+            wDocument = document.getElementById("type").value;
+            data = [];
+            
+
+
+            //retrive data
+            firebase.database().ref(wYear + '/' + wSem + '/' + wDocument).on('value', function (snapshot) {
+                data = [];
+                snapshot.forEach(element => {
+                    data.push(element.val());
+                });
+               
+            var i, r;
+            var table = document.getElementById("myTable");
+            var l = table.rows.length - 1;
+            //to delete row data if the user again selects new one
+            for (i = l; i >= 1; i--) {
+                table.deleteRow(i);
+            }
+            //insert data into table cells
+            for (r = 0; r < data.length; r++) {
+                var row = table.insertRow(r + 1);
+                var rowData = data[r];
+               
+                row.insertCell(0).innerHTML = r + 1;
+                row.insertCell(1).innerHTML = rowData.topic;
+                row.insertCell(2).innerHTML = rowData.faculty;
+                row.insertCell(3).innerHTML = rowData.description;
+                row.insertCell(4).innerHTML = rowData.date;
+                row.insertCell(5).innerHTML = "<button onclick=download(this.id) id="+r+">Download</button>";
+            }
+            });
+
+        }
+        function download(x) {
+              
+            
+            
+            window.open(data[x].link, "_blank");
+        }
+       
+        
+
+    </script>
+</body>
+
+</html>

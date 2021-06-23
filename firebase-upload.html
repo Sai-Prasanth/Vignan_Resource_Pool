@@ -1,0 +1,353 @@
+<html>
+    <head>
+        <title>Faculty Upload</title>
+    </head>
+
+<body>
+    <!-- <style>
+        /*  img {
+            height: 200px;
+            width: 200px;
+            border: 2px solid blue;
+        }*/
+        #id {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+    </style>-->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #ecf0f3;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            place-items: center;
+            font-family: poppins;
+        }
+
+        .container {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            border-radius: 20px;
+            padding: 40px;
+            box-sizing: border-box;
+            background: #ecf0f3;
+            box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+        }
+
+
+        .inputs {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        label,
+        input,
+        button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        label {
+            margin-bottom: 4px;
+        }
+
+        label:nth-of-type(2) {
+            margin-top: 12px;
+        }
+
+        input::placeholder {
+            color: gray;
+        }
+
+        input {
+            background: #ecf0f3;
+            padding: 10px;
+            padding-left: 20px;
+            height: 50px;
+            font-size: 14px;
+            border-radius: 50px;
+            box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+        }
+
+        button {
+            margin-top: 20px;
+            background: #1DA1F2;
+            height: 40px;
+            top: 100%;
+            bottom: 0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 900;
+            box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+            transition: 0.5s;
+        }
+
+        button:hover {
+            box-shadow: none;
+        }
+
+        a {
+            position: absolute;
+            font-size: 8px;
+            bottom: 4px;
+            right: 4px;
+            text-decoration: none;
+            color: black;
+            background: yellow;
+            border-radius: 10px;
+            padding: 2px;
+        }
+
+        h1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /*  img {
+                    height: 200px;
+                    width: 200px;
+                    border: 2px solid blue;
+                }*/
+
+        #lbl1FacultyName {
+            position: absolute;
+            left: 40%;
+            top: 10%;
+        }
+
+        #lbl1Name {
+            position: absolute;
+            left: 40%;
+            top: 25%;
+        }
+
+        #lbl1Description {
+            position: absolute;
+            left: 40%;
+            top: 40%;
+        }
+
+        .dropdown {
+            position: absolute;
+            left: 43%;
+            top: 55%;
+        }
+
+        #divType {
+            position: absolute;
+            left: 42%;
+            top: 65%;
+        }
+
+        #id {
+            position: absolute;
+            left: 40%;
+            top: 70%;
+        }
+
+        #progress {
+            position: absolute;
+            left: 41%;
+            top: 75%;
+        }
+
+        #select {
+            position: absolute;
+            left: 40%;
+            top: 90%;
+            width: 100px;
+        }
+
+        #upload {
+            position: absolute;
+            left: 50%;
+            top: 90%;
+            width: 100px;
+        }
+    </style>
+
+
+    <div id="lbl1FacultyName">
+        <label for="">Faculty Name:</label>
+        <input type="text" name="" id="lblFacultyName">
+    </div>
+    <br>
+    <div id="lbl1Name">
+        <label for="">Name Of Topic:</label>
+        <input type="text" name="" id="lblName">
+    </div>
+    <br>
+    <div id="lbl1Description">
+        <label for="">Description:</label>
+        <input type="text" name="" id="lblDescription">
+    </div><br>
+    <div class="dropdown">
+        <label for="">SelectYear:</label>
+        <select id="Year">
+            <option value=""> </option>
+            <optgroup label="FirstYear" id="1stYear">
+                <option value="Year1,Sem1" id="sem1">Sem1</option>
+                <option value="Year1,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="SecondYear" id="2ndYear">
+                <option value="Year2,Sem1" id="sem1">Sem1</option>
+                <option value="Year2,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="ThirdYear" id="3rdYear">
+                <option value="Year3,Sem1" id="sem1">Sem1</option>
+                <option value="Year3,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="FourthYear" id="4thYear">
+                <option value="Year4,Sem1" id="sem1">Sem1</option>
+                <option value="Year4,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+        </select>
+    </div>
+    <br>
+    <div id="divType">
+        <label for="">Type Of Data:</label>
+        <select name="" id="type">
+            <option value=""> </option>
+            <option value="Image" accept="image/*">Image</option>
+            <option value="Document">Document</option>
+            <option value="Video">Video</option>
+            <option value="PPT">PPT</option>
+        </select>
+    </div>
+
+    <br>
+    <!--
+    <img id="myimg"> <label id="upprogress"></label><br><br>-->
+
+    <progress value="0" max="100" id="progress"></progress><br> <br>
+    <button id="select">select File</button>
+    <button id="upload">upload</button>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+
+
+
+    <script id="mainscript">
+
+        var imgname, imgurl;
+        var files = [];
+        var reader;
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDbjfF91hsSmOvF_L31IP8xOU7M9_k2ea0",
+            authDomain: "circular-4ba80.firebaseapp.com",
+            projectId: "circular-4ba80",
+            storageBucket: "circular-4ba80.appspot.com",
+            messagingSenderId: "1067818656634",
+            appId: "1:1067818656634:web:84c42f446da1ed7e522cc3",
+            measurementId: "G-Z4LSR23PKK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        document.getElementById("select").onclick = function (e) {
+            var input = document.createElement('input');
+            input.type = 'file';
+
+            input.onchange = e => {
+                files = e.target.files;
+                reader = new FileReader();
+                /*  reader.onload = function () {
+                      document.getElementById("myimg").src = reader.result;
+                  }*/
+                reader.readAsDataURL(files[0]);
+            }
+            input.click();
+        }
+
+        var wYear, wSem, wDocument;
+
+
+        document.getElementById("upload").onclick = function () {
+            var x = document.getElementById("Year").value;
+            var x1 = x.split(",");
+            wYear = x1[0];
+            wSem = x1[1];
+            wDocument = document.getElementById("type").value;
+            var strFacultyName = document.getElementById('lblFacultyName').value;
+            var strName = document.getElementById('lblName').value;
+            var strDescription = document.getElementById('lblDescription').value;
+            /* if (wYear.length == 0 || wSem.length == 0 || wDocument.length == 0 || strDescription.length == 0 || strName.length != 0 || strFacultyName.length==0) {
+                 alert("Please Fill all details.");
+             }*/
+
+            //show 
+            // else {
+            var uploadtask = firebase.storage().ref(wYear + '/' + wSem + '/' + wDocument + '/' + files[0].name).put(files[0]);
+
+            /* uploadtask.on('state_changed', function (snapshot) {
+                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                 document.getElementById('upprogress').innerHTML = 'upload -' + parseInt(progress) + '%';
+        //update progress
+             },*/
+            uploadtask.on(
+                "state_changed",
+                function progress(snapshot) {
+                    var percentage =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    document.getElementById("progress").value = percentage;
+                },
+                function (error) {
+                    //dismiss
+                    alert('Error in Uploading');
+                },
+
+                function () {
+                    uploadtask.snapshot.ref.getDownloadURL().then(function (url) {
+                        imgurl = url;
+                        var timeinmillisec = new Date().toLocaleDateString();
+                        firebase.database().ref(wYear + '/' + wSem + '/' + wDocument).push().set({
+                            faculty: strFacultyName,
+                            topic: strName,
+                            description: strDescription,
+                            date: timeinmillisec,
+                            link: imgurl
+                        });
+                        // dismiss
+                        alert(wDocument + ' Added Successfully');
+                    }
+                    );
+                });
+            //}
+        }
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
