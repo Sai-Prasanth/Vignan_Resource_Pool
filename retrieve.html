@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Resources</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-analytics.js"></script>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<!-- or -->
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+<!--lottie-->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style> 
+        *{
+            box-sizing:border-box;
+        }
+        body{
+            min-height: 100vh;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); 
+            width:100%;
+        }
+        .carousel-item {
+  height: 65vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.border-md {
+    border-width: 2px;
+}
+
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+.container .btn {
+  position: absolute;
+  top: 77%;
+  left: 83%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #990a8d;
+  color:white;
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding: 16px 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.container .btn:hover {
+  background-color: rgb(196, 121, 199);
+  color: black;
+}
+h3{
+    position: absolute;
+    left: 80%;
+    top: 69%;
+}
+#practice{
+    position: absolute;
+    left: 85%;
+    top: 70%;
+}
+.divYear {
+            position: absolute;
+            left: 20%;
+            top: 25%;
+        }
+
+        #divType {
+            position: absolute;
+            left: 65%;
+            top: 25%;
+        }
+
+        #divTable {
+            position: absolute;
+            left: 18%;
+            top: 95%;
+        }
+
+        #btSubmit {
+            position: absolute;
+            left: 47%;
+            top: 90%;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th {
+            background-color: #121213;
+            color: white;
+        }
+
+        th,
+        td {
+            width: 150px;
+            text-align: center;
+            border: 1px solid rgb(228, 234, 238);
+            padding: 5px;
+        }
+
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+
+        th {
+            background-color: #121213;
+            color: white;
+        }
+
+        
+        @media only screen and (min-width: 480px){
+            .pad{
+                margin-left:200px;
+            }
+            .padd{
+                margin-left:400px;
+            }
+            th,
+        td {
+            width: 150px;
+            text-align: center;
+            border: 1px solid rgb(228, 234, 238);
+            padding: 5px;
+        } 
+        }
+        @media only screen and (max-width:480px){
+            th,
+        td {
+            width: 15px;
+            text-align: center;
+            border: 1px solid rgb(228, 234, 238);
+            padding: 5px;
+        }
+        .padd{
+                margin-left:100px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container ml-0">
+    <img style="width:50px;height:50px" src="https://th.bing.com/th/id/R060ac290c1eb5cc43d99d3d3c8949c60?rik=SSmiYEleu2%2fKMg&riu=http%3a%2f%2fwww.vmtw.in%2fimages%2finterface%2fVignan_logo.jpg&ehk=MUCrA%2bbYdIBtL%2fKzHwGQM%2byc5QpaA2gwAz9ShlQwlwU%3d&risl=&pid=ImgRaw">
+    <a class="navbar-brand" href="#">Vignan's CSE Hub</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="homepage.html">Home
+              </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="faculty-login.html">Faculty</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Student
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <!-- For Demo Purpose -->
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+             <lottie-player class="img-fluid" src="https://assets10.lottiefiles.com/packages/lf20_tnrzlN.json"  background="transparent"  speed="1" loop  autoplay></lottie-player>
+ 
+        </div>
+
+        <!-- Registeration Form -->
+        <div class="col-md-7 col-lg-6 ml-auto">
+                <div class="row">
+                    <div class="input-group col-lg-12 mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                            </span> 
+                            
+                        </div> 
+                        <h1 class="mx-5">Getting worried about Exams??</h1>
+                        <h2 class="mx-5">Not able to get any resources from your friends</h2>
+                   
+                         </div>
+
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mb-0">
+                            <p class="font-weight-bold mx-5">Here's your Treasure😎</p>
+                    </div>
+                    <h3><i>Improve your Programming skills here</h3></i>
+                
+                </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <a href="practice.html">
+  <button class="btn" id="practice">Practice</button>
+  </a>
+</div>
+ <h1 class="text-center font-weight-bold mb-3">Come Learn with Us.</h1>
+<div class="container pad">   
+    <div class="row mt-4 "> 
+        <div class="col col-md-6"> 
+        <div class="divYear">
+            <label for="" id="lblSelectYear">SelectYear:</label>
+        <select id="Year">
+            <option value=""> </option>
+            <optgroup label="FirstYear" id="1stYear">
+                <option value="Year1,Sem1" id="sem1">Sem1</option>
+                <option value="Year1,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="SecondYear" id="2ndYear">
+                <option value="Year2,Sem1" id="sem1">Sem1</option>
+                <option value="Year2,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="ThirdYear" id="3rdYear">
+                <option value="Year3,Sem1" id="sem1">Sem1</option>
+                <option value="Year3,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+            <optgroup label="FourthYear" id="4thYear">
+                <option value="Year4,Sem1" id="sem1">Sem1</option>
+                <option value="Year4,Sem2" id="sem2">Sem2</option>
+            </optgroup>
+        </select>  
+        </div>  
+        </div>
+        <div class="col col-md-4"> 
+            <div id="divType">
+        <label for="">Type Of Data:</label>
+        <select name="" id="type">
+            <option value=""> </option>
+            <option value="Image">Image</option>
+            <option value="Document">Document</option>
+            <option value="Video">Video</option>
+            <option value="PPT">PPT</option>
+        </select>
+    </div>
+        </div>
+    </div>
+    <div class="row mb-5" id="show"> 
+        <div id="divTable" >
+           <table id="myTable">
+               <tr>
+                   <th>S.No</th>
+                   <th>Topic</th>
+                   <th>Faculty Name</th>
+                   <th>Description</th>
+                   <th>Date</th>
+                   <th>Download</th>
+               </tr>
+           </table>
+       </div>
+       </div>
+   </div>
+   
+    <div class="row my-4 padd"> 
+         <button onclick="retrive()" id="btSubmit">submit</button>
+    </div>
+ 
+
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyDbjfF91hsSmOvF_L31IP8xOU7M9_k2ea0",
+            authDomain: "circular-4ba80.firebaseapp.com",
+            projectId: "circular-4ba80",
+            storageBucket: "circular-4ba80.appspot.com",
+            messagingSenderId: "1067818656634",
+            appId: "1:1067818656634:web:84c42f446da1ed7e522cc3",
+            measurementId: "G-Z4LSR23PKK"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var data = []; //array to store nodes data from firebase
+        
+
+        function retrive() {
+
+            var cont = document.getElementById('show');
+            if (cont.style.display == 'none') {
+                cont.style.display = 'block';
+            }
+            //declare variables and assign value by id's
+            var wYear, wSem, wDocument;
+            var x = document.getElementById("Year").value;
+            var x1 = x.split(",");
+            wYear = x1[0];
+
+            wSem = x1[1];
+            wDocument = document.getElementById("type").value;
+            data = [];
+            
+
+
+            //retrive data
+            firebase.database().ref(wYear + '/' + wSem + '/' + wDocument).on('value', function (snapshot) {
+                data = [];
+                snapshot.forEach(element => {
+                    data.push(element.val());
+                });
+               
+            var i, r;
+            var table = document.getElementById("myTable");
+            var l = table.rows.length - 1;
+            //to delete row data if the user again selects new one
+            for (i = l; i >= 1; i--) {
+                table.deleteRow(i);
+            }
+            //insert data into table cells
+            for (r = 0; r < data.length; r++) {
+                var row = table.insertRow(r + 1);
+                var rowData = data[r];
+               
+                row.insertCell(0).innerHTML = r + 1;
+                row.insertCell(1).innerHTML = rowData.topic;
+                row.insertCell(2).innerHTML = rowData.faculty;
+                row.insertCell(3).innerHTML = rowData.description;
+                row.insertCell(4).innerHTML = rowData.date;
+                row.insertCell(5).innerHTML = "<button onclick=download(this.id) id="+r+">Download</button>";
+            }
+            });
+
+        }
+        function download(x) {
+              
+            
+            
+            window.open(data[x].link, "_blank");
+        }
+       
+        
+
+    </script>
+</body>
+</html>
