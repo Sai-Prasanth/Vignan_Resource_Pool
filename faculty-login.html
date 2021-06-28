@@ -21,7 +21,6 @@
         })();
     </script>
     <style>
-       
         .body {
             overflow-y: hidden;
         }
@@ -81,18 +80,18 @@
             outline: none;
         }
 
-         .forgot {
+        .forgot {
 
             display: block;
             text-align: center;
             font-size: 12px;
-            color:#ebeef1;
+            color: #ebeef1;
             opacity: 0.9;
             text-decoration: none;
         }
 
-         .forgot:hover,
-         .forgot:active {
+        .forgot:hover,
+        .forgot:active {
             opacity: 1;
             text-decoration: none;
         }
@@ -100,14 +99,17 @@
         .btn-primary:active {
             transform: translateY(1px);
         }
-        #ipId{
+
+        #ipId {
             size: 10cm;
         }
-        #ipPassword{
-        size: 10cm;
+
+        #ipPassword {
+            size: 10cm;
         }
-        #form{
-          max-width: 320px;
+
+        #form {
+            max-width: 320px;
             width: 90%;
             background-color: #dfe7ec;
             padding: 40px;
@@ -116,7 +118,7 @@
             position: absolute;
             color: #fff;
             top: 30%;
-            left:45%;
+            left: 45%;
             box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
             transform: translateY(1px);
             opacity: 1;
@@ -124,13 +126,12 @@
             display: block;
             text-align: center;
             font-size: 12px;
-            color:#6f7a85;
+            color: #6f7a85;
             opacity: 0.9;
             text-decoration: none;
             background: #060607;
             outline: none;
         }
-        
     </style>
 
 </head>
@@ -138,46 +139,48 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container ml-0">
-          <img style="width:50px;height:50px" src="https://th.bing.com/th/id/R060ac290c1eb5cc43d99d3d3c8949c60?rik=SSmiYEleu2%2fKMg&riu=http%3a%2f%2fwww.vmtw.in%2fimages%2finterface%2fVignan_logo.jpg&ehk=MUCrA%2bbYdIBtL%2fKzHwGQM%2byc5QpaA2gwAz9ShlQwlwU%3d&risl=&pid=ImgRaw">
-          <a class="navbar-brand" href="#">Vignan's CSE Hub</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <img style="width:50px;height:50px"
+                src="https://th.bing.com/th/id/R060ac290c1eb5cc43d99d3d3c8949c60?rik=SSmiYEleu2%2fKMg&riu=http%3a%2f%2fwww.vmtw.in%2fimages%2finterface%2fVignan_logo.jpg&ehk=MUCrA%2bbYdIBtL%2fKzHwGQM%2byc5QpaA2gwAz9ShlQwlwU%3d&risl=&pid=ImgRaw">
+            <a class="navbar-brand" href="#">Vignan's CSE Hub</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="homepage.html">Home
-                     
-                    </a>
-              </li>
-              
-              <li class="nav-item active">
-                <a class="nav-link" href="faculty-login.html">Faculty
-                <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="retrieve.html">Student</a>
-              </li>
-               
-            </ul>
-          </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="homepage.html">Home
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="faculty-login.html">Faculty
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="retrieve.html">Student</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-      </nav>
-      
+    </nav>
+
     <div class="container ml-0">
-   
+
         <div id="form">
             <h2 class="sr-only">Login Form</h2>
             <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
             <div class="form-group "><input class="form-control" type="text" id="ipId" placeholder="ID"></div>
             <div class="form-group "><input class="form-control" type="password" id="ipPassword" placeholder="Password">
             </div>
-            <div class="form-group"><button  class="btn btn-primary btn-block" onclick="login()">Log In</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" onclick="login()">Log In</button></div>
             <!--<div class="form-group"><button class="btn btn-primary btn-block" onclick="fun()">Forgot</button></div>-->
             <a href="javascript:void(0);" onclick="fun();">Forgot your password?</a>
         </div>
-    
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
@@ -214,7 +217,13 @@
                 } else {
                     console.log(data);
                     if (data[0].password == wPassword) {
-                        window.open("firebase-upload.html", "_self");
+                        if (confirm("Please confirm to login")) {
+                            window.location.assign("firebase-upload.html");
+                            //window.open("firebase-upload.html", "_self"); 
+                        } else {
+                            window.open("faculty-login.html", "_self");
+                        }
+                       // window.open("firebase-upload.html", "_self");
                     }
                     else {
                         alert("please enter correct password");
