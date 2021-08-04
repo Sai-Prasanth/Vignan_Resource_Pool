@@ -188,7 +188,7 @@
 
 
     <script>
-        var firebaseConfig = {
+            var firebaseConfig = {
             apiKey: "AIzaSyDbjfF91hsSmOvF_L31IP8xOU7M9_k2ea0",
             authDomain: "circular-4ba80.firebaseapp.com",
             projectId: "circular-4ba80",
@@ -199,19 +199,20 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
-
+        
         function login() {
             var data = [];
 
             var wLogId = document.getElementById("ipId").value;
 
             var wPassword = document.getElementById("ipPassword").value;
+            
             firebase.database().ref("FacultyDetails").orderByChild("id").equalTo(parseInt(wLogId)).on('value', function (snapshot) {
                 data = [];
                 snapshot.forEach(element => {
                     data.push(element.val());
                 });
-
+                
                 if (data.length == 0) {
                     alert("⚠️wrong id");
                 } else {
